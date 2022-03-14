@@ -1,5 +1,6 @@
 package menus.dieren;
 
+import menus.Submenu;
 import menus.dieren.honden.labradorMenuOption;
 import menus.iMenuOption;
 
@@ -12,10 +13,13 @@ public class hondMenuOption implements iMenuOption {
     }
 
     @Override
-    public ArrayList<iMenuOption> getNextSubMenu() {
+    public Submenu getNextSubMenu() {
         ArrayList<iMenuOption> menuOptions = new ArrayList<>();
         menuOptions.add(new labradorMenuOption());
-        return menuOptions;
+
+        Submenu submenu = new Submenu();
+        submenu.setMenuOptions(menuOptions);
+        return submenu;
     }
 
     @Override

@@ -12,11 +12,14 @@ public class DierenMenuOption implements  iMenuOption{
     }
 
     @Override
-    public ArrayList<iMenuOption> getNextSubMenu() {
+    public Submenu getNextSubMenu() {
         ArrayList<iMenuOption> menuOptions = new ArrayList<>();
         menuOptions.add(new hondMenuOption());
         menuOptions.add(new paardMenuOption());
-        return menuOptions;
+
+        Submenu submenu = new Submenu();
+        submenu.setMenuOptions(menuOptions);
+        return submenu;
     }
 
     @Override

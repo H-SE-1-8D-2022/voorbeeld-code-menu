@@ -1,11 +1,7 @@
-import menus.DierenMenuOption;
-import menus.ExamenMenuOption;
-import menus.StudentenMenuOption;
-import menus.iMenuOption;
+import menus.*;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 
 public class MenuManager {
@@ -14,10 +10,10 @@ public class MenuManager {
 
 
     //Arraylist houd de huidige menu opties bij
-    private ArrayList<iMenuOption> menuOptions;
+    private Submenu menuOptions;
 
     //Arraylist die houd alle vorige menuopties bij voor backtracking
-    private List<ArrayList<iMenuOption>> previousMenu = new ArrayList<ArrayList<iMenuOption>>();
+    private ArrayList<Submenu> previousMenu = new ArrayList<>();
 
     public void start(){
 
@@ -59,8 +55,8 @@ public class MenuManager {
         index--;
 
         //Voer de code uit van de gekozen menu en sla de volgende submenu op in een variable
-        menuOptions.get(index).executeMenuOption();
-        var newMenuOptions = menuOptions.get(index).getNextSubMenu();
+        menuOptions.getMenuOptions().get(index).executeMenuOption();
+        var newMenuOptions = menuOptions.getMenuOptions().get(index).getNextSubMenu();
 
         //Als er geen volgende menu opties zijn checken we voor nieuwe input
         if(newMenuOptions == null){
@@ -73,7 +69,7 @@ public class MenuManager {
 
         //het huidige menu updaten met de nieuwe submenu
         menuOptions = newMenuOptions;
-        print();
+        print()     ;
     }
 
     private int getUserInput(){
@@ -84,7 +80,7 @@ public class MenuManager {
                 int answer = scanner.nextInt();
 
                 //See if the answer is inbetween the actual posible answers.
-                if (answer > menuOptions.size() || answer < 0) {
+                if (answer > menuOptions.getMenuOptions().size() || answer < 0) {
                     System.out.println("Please enter a valid number.");
                 } else {
                     //Return statement haalt ons uit de while loop
@@ -103,13 +99,13 @@ public class MenuManager {
     private void printMenu(){
 
         //Ga langs elke submenu optie en print de naam
-        for(int i = 0; i < menuOptions.size(); i++){
-            System.out.println(i+1 + ": "+menuOptions.get(i).getTitle());
+        for(int i = 0; i < menuOptions.getMenuOptions().size(); i++){
+            System.out.println(i+1 + ": "+menuOptions.getMenuOptions().get(i).getTitle());
         }
         System.out.println("0: Exit");
     }
 
-    private ArrayList<iMenuOption> getDefaultMenuOptions(){
+    private Submenu getDefaultMenuOptions(){
 
         //Dit is het startmenu
         ArrayList<iMenuOption> menuOptions = new ArrayList<>();
@@ -117,6 +113,9 @@ public class MenuManager {
         menuOptions.add(new ExamenMenuOption());
         menuOptions.add(new StudentenMenuOption());
 
-        return menuOptions;
+        Submenu submenu = new Submenu();
+        submenu.setMenuOptions(menuOptions);
+
+        return submenu;
     }
 }

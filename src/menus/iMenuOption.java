@@ -1,12 +1,10 @@
 package menus;
 
-import java.util.ArrayList;
-
 public interface iMenuOption {
 
     String getTitle();
 
-    default ArrayList<iMenuOption> getNextSubMenu() {
+    default Submenu getNextSubMenu() {
         return null;
     }
 

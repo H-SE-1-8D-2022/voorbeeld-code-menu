@@ -1,8 +1,7 @@
 package menus.examen;
 
+import menus.Submenu;
 import menus.iMenuOption;
-
-import java.util.ArrayList;
 
 public class wiskundeExamenMenuOption implements iMenuOption {
     @Override
@@ -11,7 +10,7 @@ public class wiskundeExamenMenuOption implements iMenuOption {
     }
 
     @Override
-    public ArrayList<iMenuOption> getNextSubMenu() {
+    public Submenu getNextSubMenu() {
         return null;
     }
 

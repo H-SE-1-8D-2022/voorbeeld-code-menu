@@ -1,9 +1,7 @@
 package menus.dieren.honden;
 
-import menus.dieren.paardMenuOption;
+import menus.Submenu;
 import menus.iMenuOption;
-
-import java.util.ArrayList;
 
 public class labradorMenuOption implements iMenuOption {
     @Override
@@ -12,7 +10,7 @@ public class labradorMenuOption implements iMenuOption {
     }
 
     @Override
-    public ArrayList<iMenuOption> getNextSubMenu() {
+    public Submenu getNextSubMenu() {
         return null;
     }
 

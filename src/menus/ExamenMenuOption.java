@@ -14,13 +14,16 @@ public class ExamenMenuOption implements iMenuOption{
     }
 
     @Override
-    public ArrayList<iMenuOption> getNextSubMenu() {
+    public Submenu getNextSubMenu() {
         ArrayList<iMenuOption> menuOptions = new ArrayList<>();
         menuOptions.add(new BiologieExamenMenuOption());
         menuOptions.add(new EngelsExamenMenuOption());
         menuOptions.add(new FransExamenMenuOption());
         menuOptions.add(new wiskundeExamenMenuOption());
-        return menuOptions;
+
+        Submenu submenu = new Submenu();
+        submenu.setMenuOptions(menuOptions);
+        return submenu;
     }
 
     @Override
